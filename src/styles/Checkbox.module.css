@@ -1,4 +1,5 @@
 .container {
+    margin-top: 30px;
     display: block;
     position: relative;
     padding-left: 35px;
@@ -27,41 +28,65 @@
     left: 0;
     height: 18px;
     width: 18px;
-    background-color: white;
+    background-color: inherit;
     border-radius: 4px;
     border: solid;
-   
+    z-index: 1;
 }
 
 .checkmarkDisabled {
     border-color: #9e9e9e;
 }
-
 .checkmarkEnabled {
     border-color: #666666;
 }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
 /* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmarkDisabled {
-    background-color: #9e9e9e;
-}
-
 .container input:checked ~ .checkmarkEnabled {
     background-color: #246bf6;
     border-color: #246bf6;
 }
+
+input:checked ~ .checkmarkDisabled {
+    background-color: #9e9e9e;
+}
+
+/* Create a area around checkbox */
+.shadowArea {
+    position: absolute;
+    top: -11px;
+    left: -10px;
+    opacity: 0.1;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* Switch area color */
+.shadowAreaMarked {
+    background-color: #b1d1dd;
+}
+.shadowAreaUnmarked {
+    background-color: #c1b8b8;
+}
+
+/* On mouse-over, show area*/
+.container input ~ .shadowArea:hover {
+    opacity: 0.6;
+}
+.container input ~ .shadowArea:focus {
+    opacity: 0.6;
+    outline: none;
+}
+
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
+}
 
 /* Show the checkmark when checked */
 .container input:checked ~ .checkmark:after {
@@ -80,27 +105,3 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-
-.checkBox {
-    width: 18px;
-    height: 18px;
-}
-
-.singeTask {
-    border: solid green;
-}
-
-.viewUndone {
-    /* composes: singeTask; */
-    color: black;
-    text-decoration: none;
-}
-
-.viewDone {
-    /* composes: singeTask; */
-    color: gray;
-    text-decoration: line-through;
-}
-
-
-
